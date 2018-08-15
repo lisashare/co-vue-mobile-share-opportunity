@@ -1,6 +1,6 @@
 <template>
     <div class="banner">
-        <div class="app-banner swiper-container">
+        <div class="app-banner swiper-container img-bg">
         <div class="swiper-wrapper">
             <div class="swiper-slide"
                 v-for = "banner in banners"
@@ -44,6 +44,7 @@ export default {
   },
   methods: {
     getBanner () {
+      // https://m.kuaidao.cn/mobile/banner/get
       this.$http.post('/kd/mobile/banner/get', {pid: 5}).then(res => {
         this.banners = res.data.data
         Vue.nextTick(() => {
@@ -80,6 +81,9 @@ export default {
 </script>
 <style lang="less" scoped>
 @rem:50rem;
+.img-bg{
+  background-image: url('/static/images/background_img/brand_top_banner.png')
+}
 .swiper-container{
     height: 320/@rem;;
 }

@@ -205,3 +205,6 @@ button,
 input {
   -webkit-appearance: none;
 }
+.kdhidden {
+  display: none;
+}

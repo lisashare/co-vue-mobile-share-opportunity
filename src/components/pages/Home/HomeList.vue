@@ -22,7 +22,7 @@
                         <p class="fl" v-for="tag in list.tagList" :key="tag">{{tag}}</p>
                         <div class="fr">
                             <i class="iconfont icon-icon_pinglun"></i>
-                            <span class="ulev-2" style="padding-left:0.3em;float: right;">4</span>
+                            <span class="ulev-2" style="padding-left:0.3em;float: right;">{{list.commentTotalNum}}</span>
                         </div>
                     </div>
                 </dd>

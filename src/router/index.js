@@ -42,6 +42,11 @@ export default new Router({
       component: () => import('@/pages/message/Message')
     },
     {
+      path: '/brandSearch',
+      name: 'brandSearch',
+      component: () => import('@/pages/brandSearch/BrandSearch')
+    },
+    {
       path: '/not-found',
       name: 'not-found',
       component: () => import('@/components/pages/NotFound/NotFound')},

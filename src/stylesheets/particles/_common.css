@@ -1,3 +1,7 @@
+.overHidden {
+  height: 100%;
+  overflow: hidden!important;
+}
 .page {
   padding-top: 2.08rem;
 }

@@ -235,6 +235,7 @@ export default {
     getBrandIdDetail () {
       let {brandId} = this
       console.log(brandId)
+    //   https://m.kuaidao.cn/mobile/share/getBrand?brandId=6302c4f52fb64cbe8a9d1ac7ba3b8e88
       this.$http.get('/kd/mobile/share/getBrand', {params: {brandId}}).then((res) => {
         console.log(res.data.data)
         this.brandInfo = res.data.data

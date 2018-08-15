@@ -39,10 +39,10 @@
                 <h4>搜索记录</h4>
                 <div class="search-branch">
                     <ul>
-                        <li class="search-history" v-for="(item,index) in searchHistory">
+                        <router-link :to="{name:'brandSearch',query:{name:item}}" tag="li" class="search-history" v-for="(item,index) in searchHistory" :key="index">
                             <span class="ind">{{index+1}}</span>
                             <p>{{item}}</p>
-                        </li>
+                        </router-link>
                     </ul>
                 </div>
                 <h5 @click="clearAllHistory">清空搜索记录</h5>
@@ -97,7 +97,7 @@ export default {
         console.log('提示')
       } else {
           // 请求，存本地，返回的值跳转到相应页面
-            let history = utils.getStore('searchHistory');
+            let history = utils.getStore('searchHistory').slice(0,3);
             if (history) { 
                 let checkrepeat = false;
                 this.searchHistory = history;
@@ -107,20 +107,21 @@ export default {
                     }
                 })
                 if (!checkrepeat) {
-                    this.searchHistory.push(this.searchValue)
+                    this.searchHistory.unshift(this.searchValue)
                 }
             }else {
-                this.searchHistory.push(this.searchValue)
+                this.searchHistory.unshift(this.searchValue)
             }
             utils.setStore('searchHistory',this.searchHistory)
             // 跳转
+            this.$router.push({ name: 'brandSearch', query: { name: this.searchValue }})
             // 清空value值
             this.searchValue = ''
         }
     },
     // 监控input框内的值，显示清除按钮
     checkInput () {
-      if (this.searchValue.length !== 0) {
+      if (this.searchValue !== 0) {
         this.close = true
       } else {
         this.close = false
@@ -139,10 +140,9 @@ export default {
   },
   created () { // 获取热搜数据
     this.getListHotInfo();
-    console.log(utils.getStore('searchHistory'))
       //获取搜索历史记录
       if (utils.getStore('searchHistory')) {
-          this.searchHistory = utils.getStore('searchHistory');
+          this.searchHistory = utils.getStore('searchHistory').slice(0,3);
           // 本地缓存中有数据显示数据
           this.showHistory = true
       }

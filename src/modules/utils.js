@@ -17,7 +17,7 @@ const setStore = (name, content) => {
 const getStore = name => {
 	if (!name) return;
 	var value = JSON.parse(window.localStorage.getItem(name));
-	if(!value.length) return ;
+	// if(!value.length) return ;
 	return value
 }
 

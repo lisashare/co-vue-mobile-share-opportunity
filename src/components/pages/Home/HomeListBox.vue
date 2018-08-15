@@ -1,17 +1,18 @@
 <template>
     <div class="home-list">
+        <div :class="[isShow ? 'masked':'']"></div>
         <mescroll ref="mescroll" :upCallback="upCallback"  warpId="index_scroll" id="index_scroll">
             <ul class="info content" ref="content">
                 <list-box v-for = "(list,index) in listBrandByTags" :key = "index" :brandId = 'list.brandId' :list = "list">
-
                 </list-box>
-
             </ul>
         </mescroll>
     </div>
 </template>
 
 <script>
+import bus from '@/modules/bus'
+
 import mescroll from '@/components/commons/mescroll/Mescroll.vue' /* 分页组件 */
 import ListBox from './HomeList'
 export default {
@@ -19,6 +20,7 @@ export default {
   components: {mescroll, ListBox},
   data () {
     return {
+      isShow: false,
       info: {
         attentionSort: '',
         investment: '',
@@ -46,8 +48,18 @@ export default {
       }).catch((error) => {
         this.$refs.mescroll.endErr()
       })
+    },
+    show(){
+        this.isShow = !this.isShow
+        if(this.isShow){
+            document.getElementsByTagName("body")[0].className="overHidden";
+        }else{
+            document.getElementsByTagName("body")[0].className="";
+        } 
     }
-
+  },
+  mounted(){
+       bus.$on('black',this.show)
   }
 //     watch : { //监听
 //     type:{
@@ -66,6 +78,23 @@ export default {
 </script>
 <style lang="less">
 @rem:50rem;
+
+.masked {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.55;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+}
+
+
+
+.home-list{
+    position: relative;
+}
 .page-infinite-loading {
     text-align: center;
 
