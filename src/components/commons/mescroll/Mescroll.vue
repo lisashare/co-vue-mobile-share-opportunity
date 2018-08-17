@@ -7,7 +7,8 @@
 <script>
 import MeScroll from '../../../../node_modules/mescroll.js/mescroll.min.js'
 import totop from './mescroll-totop.png'
-import empty from './dlogo1.png'
+import empty from './bg_Norecommendation.png'
+// import empty from './dlogo1.png'
 export default {
   props: {
     upCallback: {
@@ -75,7 +76,8 @@ export default {
         empty: { // 配置列表无任何数据的提示
           warpId: self.warpId,
           icon: empty,
-          tip: '暂无相关信息！'
+          tip: '',
+          // tip: '暂无相关信息！'
           // btntext: "",
           // btnClick: self.emptyDataBtnClick || self.btnClick,
         },
